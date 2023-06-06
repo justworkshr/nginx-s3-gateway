@@ -1,0 +1,29 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@7.0.0
+  slack: circleci/slack@4.12.1
+  vibe: justworkshr/vibe-deploy-orb@1.1.0
+jobs:
+  container_build:
+    docker:
+      - image: cimg/ruby:3.2.2
+    working_directory: ~/project
+    steps:
+      - checkout
+      - vibe-deploy-orb/container-build:
+          dockerfile-path: Dockerfile.oss
+          repo-override: nginx-s3-gateway-spa
+          tag-override: $CIRCLE_SHA1
+      - run:
+          command: 'echo ${CIRCLE_SHA1}'
+          name: Show docker build tag
+workflows:
+  release:
+    jobs:
+      - container_build:
+          context:
+            - aws-infra-sandbox
+            - slack-notifications
+          filters:
+            branches:
+              only: justworks
