@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@7.0.0
   slack: circleci/slack@4.12.1
-  vibe: justworkshr/vibe-deploy-orb@1.1.0
+  vibe-deploy-orb: justworkshr/vibe-deploy-orb@1.1.0
 jobs:
   container_build:
     docker:
