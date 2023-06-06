@@ -210,7 +210,7 @@ server {
 
     location @trailslash {
         # 302 to request without slashes
-        rewrite ^ $scheme://$http_host$request_uri/ redirect;
+        rewrite ^ https://$http_host$uri/ redirect;
     }
 
     # Provide a hint to the client on 405 errors of the acceptable request methods
