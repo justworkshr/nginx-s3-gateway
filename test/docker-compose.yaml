@@ -25,6 +25,8 @@ services:
       S3_STYLE: "virtual"
       ALLOW_DIRECTORY_LIST:
       PROVIDE_INDEX_PAGE:
+      IS_SPA: "false"
+      SPA_INDEX_PAGE:
       APPEND_SLASH_FOR_POSSIBLE_DIRECTORY:
       AWS_SIGS_VERSION:
       STATIC_SITE_HOSTING:

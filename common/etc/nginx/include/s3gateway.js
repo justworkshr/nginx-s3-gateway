@@ -35,6 +35,8 @@ _requireEnvVars('S3_STYLE');
  */
 const ALLOW_LISTING = utils.parseBoolean(process.env['ALLOW_DIRECTORY_LIST']);
 const PROVIDE_INDEX_PAGE = utils.parseBoolean(process.env['PROVIDE_INDEX_PAGE']);
+const IS_SPA = utils.parseBoolean(process.env['IS_SPA']);
+const SPA_INDEX_PAGE = process.env['SPA_INDEX_PAGE'];
 const APPEND_SLASH = utils.parseBoolean(process.env['APPEND_SLASH_FOR_POSSIBLE_DIRECTORY']);
 const FOUR_O_FOUR_ON_EMPTY_BUCKET = utils.parseBoolean(process.env['FOUR_O_FOUR_ON_EMPTY_BUCKET']);
 const S3_STYLE = process.env['S3_STYLE'];
@@ -259,6 +261,9 @@ function s3uri(r) {
         // This is a path that will resolve to an index page
         if (PROVIDE_INDEX_PAGE  && _isDirectory(uriPath) ) {
             uriPath += INDEX_PAGE;
+        }
+        if (IS_SPA  && _isDirectory(uriPath) ) {
+          uriPath = SPA_INDEX_PAGE;
         }
         path = _escapeURIPath(basePath + uriPath);
     }
