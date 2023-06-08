@@ -262,7 +262,7 @@ function s3uri(r) {
         if (PROVIDE_INDEX_PAGE  && _isDirectory(uriPath) ) {
             uriPath += INDEX_PAGE;
         }
-        if (IS_SPA  && _isDirectory(uriPath) ) {
+        if (IS_SPA  && _isDirectory(r.variables.uri_path) ) {
           uriPath = SPA_INDEX_PAGE;
         }
         path = _escapeURIPath(basePath + uriPath);
