@@ -63,7 +63,7 @@ server {
         return 404;
     }
 
-    location /health {
+    location = /health {
         return 200;
     }
 
